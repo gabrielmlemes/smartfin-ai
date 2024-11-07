@@ -4,8 +4,16 @@ import LogoImage from "../../public/logo.png";
 
 import Image from "next/image";
 import { LogInIcon } from "lucide-react";
+import { SignInButton } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
-const LoginPage = () => {
+const LoginPage = async () => {
+  const { userId } = await auth();
+  if (userId) {
+    redirect('/');
+  }
+
   return (
     <div className="grid grid-cols-2">
       {/* Esquerda */}
@@ -22,10 +30,12 @@ const LoginPage = () => {
           facilitando o controle do seu orçamento.
         </p>
 
-        <Button className="mt-8" variant="outline">
-          <LogInIcon className="mr-1"/>
-          Entrar com Google
-        </Button>
+        <SignInButton>
+          <Button className="mt-8" variant="outline">
+            <LogInIcon className="mr-1" />
+            Entrar com Google
+          </Button>
+        </SignInButton>
       </div>
 
       {/* Direita */}
