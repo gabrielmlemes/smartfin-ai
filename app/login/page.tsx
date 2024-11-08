@@ -33,7 +33,7 @@ const LoginPage = async () => {
         <SignInButton>
           <Button className="mt-8" variant="outline">
             <LogInIcon className="mr-1" />
-            Entrar com Google
+            Fazer Login
           </Button>
         </SignInButton>
       </div>
